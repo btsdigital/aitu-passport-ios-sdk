@@ -1,0 +1,24 @@
+PODS:
+  - Cordova (6.1.1):
+    - Cordova/Cordova (= 6.1.1)
+  - Cordova/Cordova (6.1.1)
+  - CordovaRTC (1.0.3):
+    - Cordova
+
+DEPENDENCIES:
+  - Cordova
+  - CordovaRTC (= 1.0.3)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - CordovaRTC
+  trunk:
+    - Cordova
+
+SPEC CHECKSUMS:
+  Cordova: eea60c20c8262ae4aecc15e78fe6e03543c2cde4
+  CordovaRTC: ac7689c3522b22631db7c52637dd4e00b5c82aa8
+
+PODFILE CHECKSUM: 060d8354317f3d55c6daab49991beca38c904839
+
+COCOAPODS: 1.9.3
