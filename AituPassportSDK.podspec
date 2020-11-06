@@ -12,6 +12,7 @@ DigitalID SDK
   s.source_files        = 'AituPassportSDK/**/*.{h,m,swift}'
   s.dependency          'Cordova'
   s.dependency          'CordovaRTC'
+  s.dependency          'DigitalIDZoomAuthenticationCordovaPlugin'
   s.ios.deployment_target = '11.0'
   s.swift_version       = '4.2'
 end

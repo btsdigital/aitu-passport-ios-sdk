@@ -33,6 +33,10 @@
                                            selector:@selector(tiktak)
                                            userInfo:nil
                                             repeats:YES];
+    
+    [self evaluateSetIsSDK];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -51,6 +55,13 @@
         [timer invalidate];
         [self.delegate passportViewController:self didTriggerRedirectUrl:urlString];
     }
+}
+
+- (void)evaluateSetIsSDK {
+    NSString *script = @"window.isAituPassportSDK = true;";
+    [wkWebView evaluateJavaScript:script
+                completionHandler:^(id _Nullable identifier, NSError * _Nullable error) {
+    }];
 }
 
 - (void)dealloc {
