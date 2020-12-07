@@ -6,15 +6,21 @@
 //
 
 #import "AituPassportViewController.h"
-#import <WebKit/WebKit.h>
+#import "AituNavigationDelegateProxy.h"
 
 @interface AituPassportViewController ()
+
+@property (nonatomic) AituNavigationDelegateProxy *delegateProxy;
 
 @end
 
 @implementation AituPassportViewController {
-    WKWebView *wkWebView;
+    WKWebView *_wkWebView;
     NSTimer *timer;
+}
+
+- (WKWebView *)wkWebView {
+    return _wkWebView;
 }
 
 - (id)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl {
@@ -23,10 +29,20 @@
     return [super initWithNibName:nil bundle:nil];
 }
 
+- (void)setDelegate:(id<AituPassportViewControllerDelegate>)delegate {
+    _delegate = delegate;
+    self.delegateProxy.supplementary = delegate;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    wkWebView = (WKWebView *)self.webView;
+    _wkWebView = (WKWebView *)self.webView;
+    
+    __auto_type originalDelegate = _wkWebView.navigationDelegate;
+    self.delegateProxy = [[AituNavigationDelegateProxy alloc] initWithOriginal:originalDelegate];
+    self.delegateProxy.supplementary = self.delegate;
+    _wkWebView.navigationDelegate = self.delegateProxy;
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1
                                              target:self
@@ -50,7 +66,7 @@
 }
 
 - (void)tiktak {
-    NSString *urlString = wkWebView.URL.absoluteString;
+    NSString *urlString = _wkWebView.URL.absoluteString;
     if ([urlString containsString:self.redirectURL] && ![urlString containsString:@"redirect_uri"]) {
         [timer invalidate];
         [self.delegate passportViewController:self didTriggerRedirectUrl:urlString];
@@ -59,7 +75,7 @@
 
 - (void)evaluateSetIsSDK {
     NSString *script = @"window.isAituPassportSDK = true;";
-    [wkWebView evaluateJavaScript:script
+    [_wkWebView evaluateJavaScript:script
                 completionHandler:^(id _Nullable identifier, NSError * _Nullable error) {
     }];
 }

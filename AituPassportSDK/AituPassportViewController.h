@@ -7,18 +7,21 @@
 
 #import <UIKit/UIKit.h>
 #import <Cordova/CDVViewController.h>
+#import <WebKit/WebKit.h>
+#import "AituPassportNavigationDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class AituPassportViewController;
 
-@protocol AituPassportViewControllerDelegate<NSObject>
+@protocol AituPassportViewControllerDelegate<NSObject, AituPassportNavigationDelegate>
     - (void)passportViewController:(AituPassportViewController *)viewController didTriggerRedirectUrl:(NSString *)redirectUrl;
 @end
 
 @interface AituPassportViewController : CDVViewController
 
 @property (nonatomic, weak) id <AituPassportViewControllerDelegate> delegate;
+@property (nonatomic, readonly) WKWebView *wkWebView;
 
 @property(nonatomic, copy) NSString *redirectURL;
 
