@@ -19,13 +19,25 @@
 }
 
 - (WKWebView *)wkWebView {
-    return (WKWebView *)self.webView;;
+    return (WKWebView *)self.webView;
 }
 
-- (id)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl {
-    self.startPage = url;
-    self.redirectURL = redirectUrl;
-    return [super initWithNibName:nil bundle:nil];
+- (instancetype)init {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.startPage = @"";
+        self.redirectURL = @"";
+    }
+    return self;
+}
+
+- (instancetype)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.startPage = url;
+        self.redirectURL = redirectUrl;
+    }
+    return self;
 }
 
 - (void)setDelegate:(id<AituPassportViewControllerDelegate>)delegate {

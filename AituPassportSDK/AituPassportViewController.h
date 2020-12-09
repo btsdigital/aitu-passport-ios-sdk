@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class AituPassportViewController;
 
 @protocol AituPassportViewControllerDelegate<NSObject, AituPassportNavigationDelegate>
+@optional
     - (void)passportViewController:(AituPassportViewController *)viewController didTriggerRedirectUrl:(NSString *)redirectUrl;
 @end
 
@@ -25,7 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) NSString *redirectURL;
 
-- (id)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl;
+- (instancetype)init;
+- (instancetype)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl;
 
 @end
 
