@@ -19,26 +19,34 @@
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    __block __auto_type decision = WKNavigationActionPolicyCancel;
-    __auto_type handler = ^(WKNavigationActionPolicy policy) {
-        decision = decision || policy;
-    };
+    __block __auto_type decision = WKNavigationResponsePolicyAllow;
+    
     if ([self.original respondsToSelector:@selector(webView:decidePolicyForNavigationAction:decisionHandler:)]) {
-        [self.original webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:handler];
+        decision = WKNavigationActionPolicyCancel;
+        __auto_type handlerOriginal = ^(WKNavigationActionPolicy policy) {
+            decision = decision || policy;
+        };
+        [self.original webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:handlerOriginal];
     }
-    [self.supplementary webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:handler];
+    
+    [self.supplementary webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:^(WKNavigationActionPolicy policy) {
+        decision = decision && policy;
+    }];
     decisionHandler(decision);
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    __block __auto_type decision = WKNavigationResponsePolicyCancel;
-    __auto_type handler = ^(WKNavigationResponsePolicy policy) {
-        decision = decision || policy;
-    };
+    __block __auto_type decision = WKNavigationResponsePolicyAllow;
     if ([self.original respondsToSelector:@selector(webView:decidePolicyForNavigationResponse:decisionHandler:)]) {
-        [self.original webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:handler];
+        decision = WKNavigationActionPolicyCancel;
+        __auto_type handlerOriginal = ^(WKNavigationResponsePolicy policy) {
+            decision = decision || policy;
+        };
+        [self.original webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:handlerOriginal];
     }
-    [self.supplementary webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:handler];
+    [self.supplementary webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:^(WKNavigationResponsePolicy policy) {
+        decision = decision && policy;
+    }];
     decisionHandler(decision);
 }
 
