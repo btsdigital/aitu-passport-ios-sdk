@@ -51,8 +51,6 @@
                                             repeats:YES];
     
     [self evaluateSetIsSDK];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {

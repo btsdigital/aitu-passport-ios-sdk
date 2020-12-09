@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
+#import <WebKit/WKNavigationDelegate.h>
 
 @protocol AituPassportNavigationDelegate;
-@protocol WKNavigationDelegate;
 
 @interface AituNavigationDelegateProxy : NSObject <WKNavigationDelegate>
 
