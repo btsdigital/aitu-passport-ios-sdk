@@ -11,7 +11,7 @@ DigitalID SDK
   s.source              = { :git => 'https://github.com/btsdigital/aitu-passport-ios-sdk.git', :tag => "v#{s.version}" }
   s.source_files        = 'AituPassportSDK/**/*.{h,m,swift}'
   s.dependency          'Cordova'
-  s.dependency          'CordovaRTC'
+  s.dependency          'CordovaRTC', '1.0.4'
   s.dependency          'DigitalIDZoomAuthenticationCordovaPlugin', '0.2.7'
   s.ios.deployment_target = '11.0'
   s.swift_version       = '4.2'
