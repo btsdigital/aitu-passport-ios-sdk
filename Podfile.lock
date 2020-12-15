@@ -2,14 +2,14 @@ PODS:
   - Cordova (6.1.1):
     - Cordova/Cordova (= 6.1.1)
   - Cordova/Cordova (6.1.1)
-  - CordovaRTC (1.0.3):
+  - CordovaRTC (1.0.4):
     - Cordova
-  - DigitalIDZoomAuthenticationCordovaPlugin (0.0.8):
+  - DigitalIDZoomAuthenticationCordovaPlugin (0.2.7):
     - Cordova
 
 DEPENDENCIES:
   - Cordova
-  - CordovaRTC (= 1.0.3)
+  - CordovaRTC (= 1.0.4)
   - DigitalIDZoomAuthenticationCordovaPlugin
 
 SPEC REPOS:
@@ -21,9 +21,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Cordova: eea60c20c8262ae4aecc15e78fe6e03543c2cde4
-  CordovaRTC: ac7689c3522b22631db7c52637dd4e00b5c82aa8
-  DigitalIDZoomAuthenticationCordovaPlugin: 5269481a42476110d7b2e5e489879c35461690eb
+  CordovaRTC: 31e6e20e0bdd01f502af72854f6d4278bf92f809
+  DigitalIDZoomAuthenticationCordovaPlugin: 240df2b2ad8f32da1b6e2a1ffbe5ae306b50bdd6
 
-PODFILE CHECKSUM: 8b7125bd73d0e035a7bef4ea6c77298026dca2d6
+PODFILE CHECKSUM: 94b6c1b70344b6e6e61237d3926770a32a7cd0f9
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
