@@ -29,9 +29,12 @@
         [self.original webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:handlerOriginal];
     }
     
-    [self.supplementary webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:^(WKNavigationActionPolicy policy) {
-        decision = decision && policy;
-    }];
+    if ([self.supplementary respondsToSelector:@selector(webView:decidePolicyForNavigationAction:decisionHandler:)]) {
+        [self.supplementary webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:^(WKNavigationActionPolicy policy) {
+            decision = decision && policy;
+        }];
+    }
+    
     decisionHandler(decision);
 }
 
@@ -44,9 +47,12 @@
         };
         [self.original webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:handlerOriginal];
     }
-    [self.supplementary webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:^(WKNavigationResponsePolicy policy) {
-        decision = decision && policy;
-    }];
+    
+    if ([self.supplementary respondsToSelector:@selector(webView:decidePolicyForNavigationResponse:decisionHandler:)]) {
+        [self.supplementary webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:^(WKNavigationResponsePolicy policy) {
+            decision = decision && policy;
+        }];
+    }
     decisionHandler(decision);
 }
 
@@ -66,21 +72,30 @@
     if ([self.original respondsToSelector:@selector(webView:didFailProvisionalNavigation:withError:)]) {
         [self.original webView:webView didFailProvisionalNavigation:navigation withError:error];
     }
-    [self.supplementary webView:webView didFailProvisionalNavigation:navigation withError:error];
+    
+    if ([self.supplementary respondsToSelector:@selector(webView:didFailProvisionalNavigation:withError:)]) {
+        [self.supplementary webView:webView didFailProvisionalNavigation:navigation withError:error];
+    }
 }
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
     if ([self.original respondsToSelector:@selector(webView:didCommitNavigation:)]) {
         [self.original webView:webView didCommitNavigation:navigation];
     }
-    [self.supplementary webView:webView didCommitNavigation:navigation];
+    
+    if ([self.supplementary respondsToSelector:@selector(webView:didCommitNavigation:)]) {
+        [self.supplementary webView:webView didCommitNavigation:navigation];
+    }
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     if ([self.original respondsToSelector:@selector(webView:didFinishNavigation:)]) {
         [self.original webView:webView didFinishNavigation:navigation];
     }
-    [self.supplementary webView:webView didFinishNavigation:navigation];
+    
+    if ([self.supplementary respondsToSelector:@selector(webView:didFinishNavigation:)]) {
+        [self.supplementary webView:webView didFinishNavigation:navigation];
+    }
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {

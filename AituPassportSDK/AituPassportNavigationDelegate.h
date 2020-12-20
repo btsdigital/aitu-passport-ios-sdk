@@ -4,6 +4,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol AituPassportNavigationDelegate <NSObject>
 
+@optional
 - (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation;
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation;
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error;
