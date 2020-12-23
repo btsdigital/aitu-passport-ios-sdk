@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83306E4C257E7EE300A053E3 /* AituNavigationDelegateProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 83306E4A257E7EE300A053E3 /* AituNavigationDelegateProxy.h */; };
+		83306E4D257E7EE300A053E3 /* AituNavigationDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83306E4B257E7EE300A053E3 /* AituNavigationDelegateProxy.m */; };
 		AA692BAF253EE1B800069CBB /* AituPassportSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = AA692BAD253EE1B800069CBB /* AituPassportSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA692BB8253EE1D700069CBB /* AituPassportViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AA692BB6253EE1D700069CBB /* AituPassportViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA692BB9253EE1D700069CBB /* AituPassportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA692BB7253EE1D700069CBB /* AituPassportViewController.m */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		0D644BE2EA34528AC2F940E6 /* Pods_AituPassportSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AituPassportSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83306E4A257E7EE300A053E3 /* AituNavigationDelegateProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AituNavigationDelegateProxy.h; sourceTree = "<group>"; };
+		83306E4B257E7EE300A053E3 /* AituNavigationDelegateProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AituNavigationDelegateProxy.m; sourceTree = "<group>"; };
 		AA692BAA253EE1B800069CBB /* AituPassportSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AituPassportSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA692BAD253EE1B800069CBB /* AituPassportSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AituPassportSDK.h; sourceTree = "<group>"; };
 		AA692BAE253EE1B800069CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 			children = (
 				AA692BB6253EE1D700069CBB /* AituPassportViewController.h */,
 				AA692BB7253EE1D700069CBB /* AituPassportViewController.m */,
+				83306E4A257E7EE300A053E3 /* AituNavigationDelegateProxy.h */,
+				83306E4B257E7EE300A053E3 /* AituNavigationDelegateProxy.m */,
 				AA692BAD253EE1B800069CBB /* AituPassportSDK.h */,
 				AA692BAE253EE1B800069CBB /* Info.plist */,
 			);
@@ -104,6 +110,7 @@
 			files = (
 				AA692BB8253EE1D700069CBB /* AituPassportViewController.h in Headers */,
 				AA692BAF253EE1B800069CBB /* AituPassportSDK.h in Headers */,
+				83306E4C257E7EE300A053E3 /* AituNavigationDelegateProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA692BB9253EE1D700069CBB /* AituPassportViewController.m in Sources */,
+				83306E4D257E7EE300A053E3 /* AituNavigationDelegateProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,27 +6,52 @@
 //
 
 #import "AituPassportViewController.h"
-#import <WebKit/WebKit.h>
+#import "AituNavigationDelegateProxy.h"
 
 @interface AituPassportViewController ()
+
+@property (nonatomic) AituNavigationDelegateProxy *delegateProxy;
 
 @end
 
 @implementation AituPassportViewController {
-    WKWebView *wkWebView;
     NSTimer *timer;
 }
 
-- (id)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl {
-    self.startPage = url;
-    self.redirectURL = redirectUrl;
-    return [super initWithNibName:nil bundle:nil];
+- (WKWebView *)wkWebView {
+    return (WKWebView *)self.webView;
+}
+
+- (instancetype)init {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.startPage = @"";
+        self.redirectURL = @"";
+    }
+    return self;
+}
+
+- (instancetype)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.startPage = url;
+        self.redirectURL = redirectUrl;
+    }
+    return self;
+}
+
+- (void)setDelegate:(id<AituPassportViewControllerDelegate>)delegate {
+    _delegate = delegate;
+    self.delegateProxy.supplementary = delegate;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    wkWebView = (WKWebView *)self.webView;
+    id originalDelegate = self.wkWebView.navigationDelegate;
+    self.delegateProxy = [[AituNavigationDelegateProxy alloc] initWithOriginal:originalDelegate];
+    self.delegateProxy.supplementary = self.delegate;
+    self.wkWebView.navigationDelegate = self.delegateProxy;
     
     timer = [NSTimer scheduledTimerWithTimeInterval:1
                                              target:self
@@ -35,8 +60,6 @@
                                             repeats:YES];
     
     [self evaluateSetIsSDK];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -50,7 +73,7 @@
 }
 
 - (void)tiktak {
-    NSString *urlString = wkWebView.URL.absoluteString;
+    NSString *urlString = self.wkWebView.URL.absoluteString;
     if ([urlString containsString:self.redirectURL] && ![urlString containsString:@"redirect_uri"]) {
         [timer invalidate];
         [self.delegate passportViewController:self didTriggerRedirectUrl:urlString];
@@ -59,9 +82,7 @@
 
 - (void)evaluateSetIsSDK {
     NSString *script = @"window.isAituPassportSDK = true;";
-    [wkWebView evaluateJavaScript:script
-                completionHandler:^(id _Nullable identifier, NSError * _Nullable error) {
-    }];
+    [self.wkWebView evaluateJavaScript:script completionHandler:nil];
 }
 
 - (void)dealloc {
