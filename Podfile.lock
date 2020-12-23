@@ -1,29 +1,33 @@
 PODS:
+  - AituWebRTC (0.0.2)
   - Cordova (6.1.1):
     - Cordova/Cordova (= 6.1.1)
   - Cordova/Cordova (6.1.1)
-  - CordovaRTC (1.0.3):
+  - CordovaRTC (1.0.5):
+    - AituWebRTC
     - Cordova
-  - DigitalIDZoomAuthenticationCordovaPlugin (0.0.8):
+  - DigitalIDZoomAuthenticationCordovaPlugin (0.2.7):
     - Cordova
 
 DEPENDENCIES:
   - Cordova
-  - CordovaRTC (= 1.0.3)
+  - CordovaRTC
   - DigitalIDZoomAuthenticationCordovaPlugin
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  "git@gitlab.btsd.kz:ios/infrastructure/podspecs.git":
+    - AituWebRTC
     - CordovaRTC
-    - DigitalIDZoomAuthenticationCordovaPlugin
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - Cordova
+    - DigitalIDZoomAuthenticationCordovaPlugin
 
 SPEC CHECKSUMS:
+  AituWebRTC: c784a3addec08ffcd64e964cf8981299ed80d401
   Cordova: eea60c20c8262ae4aecc15e78fe6e03543c2cde4
-  CordovaRTC: ac7689c3522b22631db7c52637dd4e00b5c82aa8
-  DigitalIDZoomAuthenticationCordovaPlugin: 5269481a42476110d7b2e5e489879c35461690eb
+  CordovaRTC: a6c89600d2b5c4c46bf75a063eaa0a33133a0d3c
+  DigitalIDZoomAuthenticationCordovaPlugin: 240df2b2ad8f32da1b6e2a1ffbe5ae306b50bdd6
 
-PODFILE CHECKSUM: 8b7125bd73d0e035a7bef4ea6c77298026dca2d6
+PODFILE CHECKSUM: fd77fd13ebabb21b47942bdb4156b348cc3b06b2
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
