@@ -14,7 +14,7 @@ Aitu Passport SDK
   s.dependency          'CordovaRTC'
   s.dependency          'DigitalIDZoomAuthenticationCordovaPlugin', '0.2.7'
   s.ios.deployment_target = '11.0'
-  s.swift_version         = '4.2'
+  s.swift_version         = '5.0'
   s.user_target_xcconfig  = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   s.pod_target_xcconfig   = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end
