@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name                = 'AituPassportSDK'
-  s.version             = '1.1.0'
+  s.version             = '1.2.0'
   s.summary             = 'AituPassport SDK'
   s.description         = <<-DESC
-DigitalID SDK
+Aitu Passport SDK
                        DESC
-  s.homepage            = 'https://digital-id.kz'
+  s.homepage            = 'https://passport.aitu.io'
   s.license             = 'MIT'
   s.author              = { 'DigitalID' => 'almas.adilbek@btsdigital.kz' }
   s.source              = { :git => 'https://github.com/btsdigital/aitu-passport-ios-sdk.git', :tag => "v#{s.version}" }
@@ -14,5 +14,4 @@ DigitalID SDK
   s.dependency          'CordovaRTC'
   s.dependency          'DigitalIDZoomAuthenticationCordovaPlugin', '0.2.7'
   s.ios.deployment_target = '11.0'
-  s.swift_version       = '4.2'
 end
