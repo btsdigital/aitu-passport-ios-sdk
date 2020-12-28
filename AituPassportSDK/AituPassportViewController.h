@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init;
 - (instancetype)initWithUrl:(NSString * _Nonnull)url redirectUrl:(NSString *_Nonnull)redirectUrl;
+- (void)setUIDocumentMenuViewControllerSoureViewsIfNeeded:(UIViewController *)viewControllerToPresent;
 
 @end
 
