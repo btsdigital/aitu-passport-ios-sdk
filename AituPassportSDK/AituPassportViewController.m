@@ -72,6 +72,21 @@
     [timer invalidate];
 }
 
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    [self setUIDocumentMenuViewControllerSoureViewsIfNeeded:viewControllerToPresent];
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
+- (void)setUIDocumentMenuViewControllerSoureViewsIfNeeded:(UIViewController *)viewControllerToPresent {
+    if (@available(iOS 13, *)) {
+        if ([viewControllerToPresent isKindOfClass: [UIDocumentMenuViewController class]]
+            && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            viewControllerToPresent.popoverPresentationController.sourceView = self.wkWebView;
+            viewControllerToPresent.popoverPresentationController.sourceRect = CGRectMake(self.wkWebView.center.x, self.wkWebView.center.y, 1, 1);
+        }
+    }
+}
+
 - (void)tiktak {
     NSString *urlString = self.wkWebView.URL.absoluteString;
     if ([urlString containsString:self.redirectURL] && ![urlString containsString:@"redirect_uri"]) {
