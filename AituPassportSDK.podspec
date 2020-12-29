@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = 'AituPassportSDK'
-  s.version             = '1.2.0-fix-ios13-2'
+  s.version             = '1.2.1'
   s.summary             = 'AituPassport SDK'
   s.description         = <<-DESC
 Aitu Passport SDK
