@@ -50,4 +50,13 @@
     decisionHandler(decision);
 }
 
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    if ([self.original respondsToSelector:@selector(webView:didCommitNavigation:)]) {
+        [self.original webView:webView didCommitNavigation:navigation];
+    }
+    if ([self.supplementary respondsToSelector:@selector(webView:didCommitNavigation:)]) {
+        [self.supplementary webView:webView didCommitNavigation:navigation];
+    }
+}
+
 @end
