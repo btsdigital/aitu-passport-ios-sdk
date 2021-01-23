@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = 'AituPassportSDK'
-  s.version             = '1.2.2'
+  s.version             = '1.2.3'
   s.summary             = 'AituPassport SDK'
   s.description         = <<-DESC
 Aitu Passport SDK
@@ -12,7 +12,7 @@ Aitu Passport SDK
   s.source_files        = 'AituPassportSDK/**/*.{h,m,swift}'
   s.dependency          'Cordova'
   s.dependency          'CordovaRTC'
-  s.dependency          'DigitalIDZoomAuthenticationCordovaPlugin', '0.2.7'
+  s.dependency          'DigitalIDZoomAuthenticationCordovaPlugin', '~> 0.2.0'
   s.ios.deployment_target = '11.0'
   s.swift_version         = '5.0'
   s.user_target_xcconfig  = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
