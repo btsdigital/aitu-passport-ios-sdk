@@ -60,6 +60,7 @@
                                             repeats:YES];
     
     [self evaluateSetIsSDK];
+    [self setBackButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -79,7 +80,7 @@
 
 - (void)setUIDocumentMenuViewControllerSoureViewsIfNeeded:(UIViewController *)viewControllerToPresent {
     if (@available(iOS 13, *)) {
-        if ([viewControllerToPresent isKindOfClass: [UIDocumentMenuViewController class]]
+        if ([viewControllerToPresent isKindOfClass:[UIDocumentMenuViewController class]]
             && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             viewControllerToPresent.popoverPresentationController.sourceView = self.wkWebView;
             viewControllerToPresent.popoverPresentationController.sourceRect = CGRectMake(self.wkWebView.center.x, self.wkWebView.center.y, 1, 1);
@@ -88,11 +89,33 @@
 }
 
 - (void)tiktak {
+    if (self.wkWebView.canGoBack == true) {
+        [self setBackButtonColor:UIColor.systemBlueColor];
+    }
     NSString *urlString = self.wkWebView.URL.absoluteString;
     if ([urlString containsString:self.redirectURL] && ![urlString containsString:@"redirect_uri"]) {
         [timer invalidate];
         [self.delegate passportViewController:self didTriggerRedirectUrl:urlString];
     }
+}
+
+- (void)setBackButton {
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"←" style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+    [self.navigationItem setLeftBarButtonItem:backButton animated:YES];
+    [self setBackButtonColor:UIColor.whiteColor];
+}
+
+- (void)goBack {
+    if (self.wkWebView.canGoBack == true) {
+        if (self.wkWebView.backForwardList.backList.count == 1) {
+            [self setBackButtonColor:UIColor.whiteColor];
+        }
+        [self.wkWebView goBack];
+    }
+}
+
+- (void)setBackButtonColor:(UIColor *)color {
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: color} forState:UIControlStateNormal];
 }
 
 - (void)evaluateSetIsSDK {
