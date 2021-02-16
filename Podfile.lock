@@ -2,8 +2,6 @@ PODS:
   - AituWebRTC (0.0.2)
   - Cordova (6.1.1):
     - Cordova/Cordova (= 6.1.1)
-  - cordova-plugin-inappbrowser (1.5.0):
-    - Cordova (>= 4.3.0)
   - Cordova/Cordova (6.1.1)
   - CordovaRTC (1.0.5):
     - AituWebRTC
@@ -13,14 +11,12 @@ PODS:
 
 DEPENDENCIES:
   - Cordova
-  - cordova-plugin-inappbrowser
   - CordovaRTC
   - DigitalIDZoomAuthenticationCordovaPlugin
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Cordova
-    - cordova-plugin-inappbrowser
     - DigitalIDZoomAuthenticationCordovaPlugin
   https://gitlab.btsd.kz/ios/infrastructure/podspecs.git:
     - AituWebRTC
@@ -29,10 +25,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AituWebRTC: c784a3addec08ffcd64e964cf8981299ed80d401
   Cordova: eea60c20c8262ae4aecc15e78fe6e03543c2cde4
-  cordova-plugin-inappbrowser: 524780743ddeaa363d9f70b5e4700d55efde3dd4
   CordovaRTC: a6c89600d2b5c4c46bf75a063eaa0a33133a0d3c
   DigitalIDZoomAuthenticationCordovaPlugin: 240df2b2ad8f32da1b6e2a1ffbe5ae306b50bdd6
 
-PODFILE CHECKSUM: 48b17ea2966d914e65c346933b3af6b5a0815931
+PODFILE CHECKSUM: e58c1daac10053ebb201ff18b140724ecae85f0b
 
 COCOAPODS: 1.10.0

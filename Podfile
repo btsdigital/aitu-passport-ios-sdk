@@ -7,7 +7,6 @@ target 'AituPassportSDK' do
 
   pod 'Cordova'
   pod 'CordovaRTC'
-  pod 'cordova-plugin-inappbrowser'
   pod 'DigitalIDZoomAuthenticationCordovaPlugin'
 
 end
