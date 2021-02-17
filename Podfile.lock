@@ -15,12 +15,12 @@ DEPENDENCIES:
   - DigitalIDZoomAuthenticationCordovaPlugin
 
 SPEC REPOS:
-  "git@gitlab.btsd.kz:ios/infrastructure/podspecs.git":
-    - AituWebRTC
-    - CordovaRTC
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Cordova
     - DigitalIDZoomAuthenticationCordovaPlugin
+  https://gitlab.btsd.kz/ios/infrastructure/podspecs.git:
+    - AituWebRTC
+    - CordovaRTC
 
 SPEC CHECKSUMS:
   AituWebRTC: c784a3addec08ffcd64e964cf8981299ed80d401
@@ -28,6 +28,6 @@ SPEC CHECKSUMS:
   CordovaRTC: a6c89600d2b5c4c46bf75a063eaa0a33133a0d3c
   DigitalIDZoomAuthenticationCordovaPlugin: 240df2b2ad8f32da1b6e2a1ffbe5ae306b50bdd6
 
-PODFILE CHECKSUM: fd77fd13ebabb21b47942bdb4156b348cc3b06b2
+PODFILE CHECKSUM: e58c1daac10053ebb201ff18b140724ecae85f0b
 
 COCOAPODS: 1.10.0
