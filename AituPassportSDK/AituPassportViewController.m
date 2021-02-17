@@ -16,6 +16,7 @@
 
 @implementation AituPassportViewController {
     NSTimer *timer;
+    NSString *hostUrl;
 }
 
 - (WKWebView *)wkWebView {
@@ -52,12 +53,7 @@
     self.delegateProxy = [[AituNavigationDelegateProxy alloc] initWithOriginal:originalDelegate];
     self.delegateProxy.supplementary = self.delegate;
     self.wkWebView.navigationDelegate = self.delegateProxy;
-    
-    timer = [NSTimer scheduledTimerWithTimeInterval:1
-                                             target:self
-                                           selector:@selector(tiktak)
-                                           userInfo:nil
-                                            repeats:YES];
+    hostUrl = self.wkWebView.URL.host;
     
     [self evaluateSetIsSDK];
     [self setBackButton];
@@ -65,6 +61,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(tiktak)
+                                           userInfo:nil
+                                            repeats:YES];
     [timer fire];
 }
 
@@ -89,9 +90,7 @@
 }
 
 - (void)tiktak {
-    if (self.wkWebView.canGoBack == true) {
-        [self setBackButtonColor:UIColor.systemBlueColor];
-    }
+    [self setBackButtonColor];
     NSString *urlString = self.wkWebView.URL.absoluteString;
     if ([urlString containsString:self.redirectURL] && ![urlString containsString:@"redirect_uri"]) {
         [timer invalidate];
@@ -102,20 +101,22 @@
 - (void)setBackButton {
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"←" style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
     [self.navigationItem setLeftBarButtonItem:backButton animated:YES];
-    [self setBackButtonColor:UIColor.whiteColor];
+    [self setBackButtonColor];
+}
+
+- (void)setBackButtonColor {
+    if (self.wkWebView.canGoBack == true && ![self.wkWebView.URL.host isEqualToString:hostUrl]) {
+        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.systemBlueColor} forState:UIControlStateNormal];
+    } else {
+        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.clearColor} forState:UIControlStateNormal];
+    }
 }
 
 - (void)goBack {
     if (self.wkWebView.canGoBack == true) {
-        if (self.wkWebView.backForwardList.backList.count == 1) {
-            [self setBackButtonColor:UIColor.whiteColor];
-        }
+        [self setBackButtonColor];
         [self.wkWebView goBack];
     }
-}
-
-- (void)setBackButtonColor:(UIColor *)color {
-    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: color} forState:UIControlStateNormal];
 }
 
 - (void)evaluateSetIsSDK {
