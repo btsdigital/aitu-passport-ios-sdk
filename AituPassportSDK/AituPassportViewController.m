@@ -90,6 +90,9 @@
 }
 
 - (void)tiktak {
+    if (self.webView.backgroundColor == UIColor.clearColor) {
+        self.webView.backgroundColor = UIColor.whiteColor;
+    }
     [self setBackButtonColor];
     NSString *urlString = self.wkWebView.URL.absoluteString;
     if ([urlString containsString:self.redirectURL] && ![urlString containsString:@"redirect_uri"]) {
