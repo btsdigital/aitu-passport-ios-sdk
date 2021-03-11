@@ -109,9 +109,9 @@
 
 - (void)setBackButtonColor {
     if (self.wkWebView.canGoBack == true && ![self.wkWebView.URL.host isEqualToString:hostUrl]) {
-        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.systemBlueColor} forState:UIControlStateNormal];
+        [self.navigationItem.leftBarButtonItem setTintColor:UIColor.systemBlueColor];
     } else {
-        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.clearColor} forState:UIControlStateNormal];
+        [self.navigationItem.leftBarButtonItem setTintColor:UIColor.clearColor];
     }
 }
 
