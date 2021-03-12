@@ -108,7 +108,7 @@
 }
 
 - (void)setBackButtonColor {
-    if (self.wkWebView.canGoBack == true && ![self.wkWebView.URL.host isEqualToString:hostUrl]) {
+    if ([self needBackButton]) {
         [self.navigationItem.leftBarButtonItem setTintColor:UIColor.systemBlueColor];
     } else {
         [self.navigationItem.leftBarButtonItem setTintColor:UIColor.clearColor];
@@ -116,10 +116,17 @@
 }
 
 - (void)goBack {
-    if (self.wkWebView.canGoBack == true) {
+    if (self.wkWebView.canGoBack) {
         [self setBackButtonColor];
         [self.wkWebView goBack];
     }
+}
+
+- (Boolean)needBackButton {
+    if (self.wkWebView.canGoBack && (![self.wkWebView.URL.host isEqualToString:hostUrl] || [self.wkWebView.URL.absoluteString containsString:@"user-agreement"] || [self.wkWebView.URL.absoluteString containsString:@"privacy-policy"])) {
+        return true;
+    }
+    return false;
 }
 
 - (void)evaluateSetIsSDK {
